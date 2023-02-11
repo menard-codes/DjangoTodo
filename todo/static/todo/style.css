@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#main-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 200px 1fr;
+  margin-bottom: 20px;
+}
+
+#add-task-form-container {
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 42px;
+}
+
+#add-task-form {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#new-todo-btn {
+  width: 49px;
+  height: 49px;
+  background-color: #0072db;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#new-todo-btn:active {
+  background-color: #035099;
+}
+
+#todo-list-container {
+  margin: 30px 20px;
+}
+
+#new-task-input {
+  width: 333px;
+  height: 49px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  padding: 10px;
+  font-size: 1.3rem;
+}
+
+#new-task-input:focus {
+  outline: none;
+}
+
+#todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-item {
+  font-size: 1.3rem;
+  width: 100%;
+  height: 47px;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-item * {
+  cursor: pointer;
+}
+
+.completed-task {
+  background-color: #a5bacd;
+  color: #555;
+  text-decoration: line-through;
+}
+
+.incomplete-task {
+  background-color: #43a5ff;
+  color: #fff;
+  text-decoration: none;
+}

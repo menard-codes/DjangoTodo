@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo App</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'todo/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div id="main-container">
+      <div id="add-task-form-container">
+        <h1 style="font-size: 37px">TODO APP</h1>
+        <!-- \todo-form -->
+        <form id="add-task-form" action="/add-todo" method="post">
+          {% csrf_token %}
+          <input
+            type="text"
+            id="new-task-input"
+            name="new-task"
+            placeholder="write your todo here..."
+            maxlength="30"
+            required
+          />
+          <button type="submit" id="new-todo-btn">
+            <i
+              style="color: white; margin-left: 1px"
+              class="fa-sharp fa-solid fa-plus fa-3x"
+            ></i>
+          </button>
+        </form>
+      </div>
+
+      <div id="todo-list-container">
+        <!-- \todo-list -->
+        <form id="todo-list-form" action="/update-todo-list" method="post">
+          {% csrf_token %}
+          <ul id="todo-list">
+            {% for task_item in todo_list %} {% if task_item.completed %}
+
+            <li class="task-item completed-task">
+              <input
+                type="checkbox"
+                onchange="submitForm()"
+                id="task{{task_item.pk}}"
+                name="task{{task_item.pk}}"
+                value="completed"
+                checked
+              />
+              <label for="task{{ task_item.pk }}">{{ task_item.task }}</label>
+            </li>
+
+            {% else %}
+
+            <li class="task-item incomplete-task">
+              <input
+                type="checkbox"
+                onchange="submitForm()"
+                id="task{{task_item.pk}}"
+                name="task{{task_item.pk}}"
+                value="completed"
+              />
+              <label for="task{{ task_item.pk }}">{{ task_item.task }}</label>
+            </li>
+
+            {% endif %} {% endfor %}
+          </ul>
+        </form>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    const submitForm = () => {
+      document.forms.namedItem("todo-list-form").submit();
+    };
+  </script>
+</html>
